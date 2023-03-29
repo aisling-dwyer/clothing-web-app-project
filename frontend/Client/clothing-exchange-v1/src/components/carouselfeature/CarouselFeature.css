@@ -1,0 +1,19 @@
+.clothingitems-carousel-container {
+    width: 100vw;
+
+    background-color: black;
+    margin-top: 50px;
+}
+
+
+.clothingitem-img {
+    padding: 25px;
+    
+}
+.clothingitem-card-container {
+    height: 550px;
+    background-color: pink;
+    text-align: center;
+
+}
+
