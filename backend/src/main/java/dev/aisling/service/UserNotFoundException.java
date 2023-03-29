@@ -5,4 +5,7 @@ import org.bson.types.ObjectId;
 public class UserNotFoundException extends Throwable {
     public UserNotFoundException(ObjectId id) {
     }
+
+    public UserNotFoundException(String s) {
+    }
 }

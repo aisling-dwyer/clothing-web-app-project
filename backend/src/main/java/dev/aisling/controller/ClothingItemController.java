@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/clothingitems")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ClothingItemController {
     @Autowired
     private ClothingItemService clothingItemService;

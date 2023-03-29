@@ -4,15 +4,19 @@ import dev.aisling.dto.UserDTO;
 import dev.aisling.model.User;
 import dev.aisling.dto.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 import org.bson.types.ObjectId;
+import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     //GET method to read all users
     public List<UserDTO> allUsers() {
@@ -20,7 +24,8 @@ public class UserService {
     }
 
     //GET method to read single user by using username
-    public UserDTO singleUser(String userName) {
+    public Optional<UserDTO> singleUser(String userName) {
+
         return userRepository.findUserByUserName(userName);
     }
 
@@ -37,34 +42,41 @@ public class UserService {
         return "User with id "+id+ " has been successfully deleted.";
     }
 
-    //DELETE method to delete user by username
-    public String removeUserByName(String userName) {
-        UserDTO userToBeDeleted = singleUser(userName);
-        userRepository.delete(userToBeDeleted);
-        return "User with id "+userToBeDeleted+ " has been successfully deleted.";
-    }
+//    //DELETE method to delete user by username
+//    public String removeUserByName(String userName) {
+//        Optional<UserDTO> userToBeDeleted = singleUser(userName);
+//        userRepository.delete(userToBeDeleted);
+//        return "User with id "+userToBeDeleted+ " has been successfully deleted.";
+//    }
 
     //POST method to add user
     public UserDTO createUser (User user) {
         UserDTO userDto = new UserDTO();
 
         userDto.setUserName(user.getUserName());
-        userDto.setPassword(user.getPassword());
+        //password encrypted
+        userDto.setPassword(passwordEncoder.encode(user.getPassword()));
         userDto.setLastName(user.getLastName());
         userDto.setFirstName(user.getFirstName());
         userDto.setEmail(user.getEmail());
         userDto.setAddress(user.getAddress());
         userDto.setPhone(user.getPhone());
+        userDto.setRole("ROLE_USER");
 
         return userRepository.save(userDto);
     }
 
-    //UPDATE method
-    public UserDTO updateUserAddress(String userName, User user) {
-        UserDTO userDto = singleUser(userName);
+    //UPDATE method - patch
+    public Optional<UserDTO> updateUserAddress(String userName, User user) {
+        Optional<UserDTO> userDto = singleUser(userName);
+        if(userDto.isPresent()) {
+            UserDTO userFound = userDto.get();
+            userFound.setAddress(user.getAddress());
+            userRepository.save(userFound);
 
-        userDto.setAddress(user.getAddress());
+        }
 
-        return userRepository.save(userDto);
+        return userDto;
+
     }
 }
