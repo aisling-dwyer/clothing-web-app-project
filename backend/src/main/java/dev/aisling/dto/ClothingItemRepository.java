@@ -9,4 +9,6 @@ import java.util.List;
 public interface ClothingItemRepository extends MongoRepository<ClothingItemDTO, ObjectId> {
     ClothingItemDTO getItemById(ObjectId id);
 
+    List<ClothingItemDTO> findByUserId(ObjectId userId);
+
 }

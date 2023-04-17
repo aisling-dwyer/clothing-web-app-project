@@ -10,9 +10,7 @@ import java.util.List;
 public interface OrderRepository extends MongoRepository<OrderDTO, ObjectId> {
     OrderDTO findOrderById(ObjectId id);
 
-//    List<OrderDTO> getUserOrders(ObjectId id);
-
-
+    List<OrderDTO> findByUserId(ObjectId userId);
 
 }
 
