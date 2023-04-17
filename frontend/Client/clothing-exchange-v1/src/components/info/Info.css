@@ -1,0 +1,21 @@
+.Info-Style {
+    font-size: 24px;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 0;
+
+}
+
+.Brand-Style {
+    padding: 20px;
+    margin: 20px;
+    margin-top: 76px;
+    text-align: center;
+    font-family: "Bradley Hand", cursive;
+    color: #FF69B4;
+    font-weight: bold;
+    font-size:60px;
+}

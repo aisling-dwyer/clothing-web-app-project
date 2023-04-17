@@ -1,31 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CarouselFeature.css';
 import Carousel from 'react-material-ui-carousel';
 import { Paper } from '@mui/material';
 
-const CarouselFeature = ({clothingitems}) => {
-    return (
-        <div className = 'clothingitems-carousel-container'>
-            <Carousel>
-                {
-                    clothingitems?.map((clothingitem) => {
-                        return(
-                            <Paper>
-                                <div className = 'clothingitem-card-container'>
-                                    <div className = "clothingitem-card">
-                                        <div className = "clothingitem-img">
-                                            <img src={clothingitem.url}></img>
-                                        </div>
+const CarouselFeature = ({ clothingitems }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-                                    </div>
-                                </div>
-                            </Paper>
-                        )
-                    })
-                }
-            </Carousel>
-        </div>
-    )
-}
+  const handleNextImage = () => {
+    setCurrentImageIndex((currentImageIndex + 1) % clothingitems.length);
+  };
+
+  const handlePreviousImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === 0 ? clothingitems.length - 1 : currentImageIndex - 1
+    );
+  };
+
+  return (
+    <div className='clothingitems-carousel-container'>
+      <Carousel autoPlay = {false} navButtonsAlwaysVisible index={currentImageIndex} onChange={(index) => setCurrentImageIndex(index)}>
+         
+        {clothingitems?.map((clothingitem) => {
+          return (
+
+            <Paper key={clothingitem.id}>
+            <div className='clothingitem-card-container'>
+            <p><br />Here are some of the clothing items available to borrow from our community</p>
+              <div className='clothingitem-card'>
+                <div className='clothingitem-img'>
+                  <img src={clothingitem.url} alt='clothing item'></img>
+                </div>
+              </div>
+            </div>
+          </Paper>
+        );
+      })}
+    </Carousel>
+    {/* <div className='carousel-navigation'>
+      <button onClick={handlePreviousImage} className='carousel-arrow'>
+        &#60;
+      </button>
+      <button onClick={handleNextImage} className='carousel-arrow'>
+        &#62;
+      </button>
+    </div> */}
+  </div>
+);
+};
 
 export default CarouselFeature;

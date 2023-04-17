@@ -1,0 +1,21 @@
+.account-style {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  input {
+    display: flex !important;
+    align-items: center !important;
+
+  }
+
+  h1 {
+      margin-bottom: 50px !important;
+  }
+
+  .new-item-form {
+      align-items: center !important;
+  }
+

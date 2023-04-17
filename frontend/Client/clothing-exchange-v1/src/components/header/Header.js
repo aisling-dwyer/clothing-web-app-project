@@ -1,19 +1,21 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShirt } from "@fortawesome/free-solid-svg-icons";
+import { faBasketShopping, faShirt } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
+import "./Header.css";
+import Basket from "../basket/Basket";
 
 const Header = () => {
     return (
-       <Navbar bg = "dark" variant = "dark" expand = "lg">
+       <Navbar className = "navbar" bg = "dark" variant = "dark" expand = "lg">
            <Container fluid>
-               <Navbar.Brand href = "/" style={{"color":'pink'}}>
-                    <FontAwesomeIcon icon={ faShirt }/>  Your Friendly Neighbourhood Wardrobe
-               </Navbar.Brand>
+                <Navbar.Brand style={{"color":'pink'}}>
+                    <FontAwesomeIcon icon={ faShirt }/>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll"/>
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -22,12 +24,15 @@ const Header = () => {
                         navbarScroll
                     >
                         <NavLink className = "nav-link" to="/">Home</NavLink>
-                        <NavLink className = "nav-link" to="../yourWardrobe/YourWardrobe">Your Wardrobe</NavLink>
+                        <NavLink className = "nav-link" to="../yourAccount/YourAccount">Your Account</NavLink>
                         <NavLink className = "nav-link" to="../yourNeighbourhoodWardrobe/YourNeighbourhoodWardrobe">Your Neighbourhood Wardrobe</NavLink>
+                        <NavLink className = "nav-link" to="/login">Login</NavLink>
+                        <NavLink className = "nav-link" to="/register">Register</NavLink>
                     </Nav>
-                    <Button variant="outline-info" className="me-2">Login</Button>
-                    <Button variant="outline-info" className="me-2">Register</Button>
                 </Navbar.Collapse>
+                <Navbar.Brand href = "/basket/Basket" style={{"color":'pink'}}>
+                    <FontAwesomeIcon icon={ faBasketShopping } />
+                </Navbar.Brand>
            </Container>
        </Navbar>
     )
