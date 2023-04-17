@@ -1,11 +1,14 @@
 package dev.aisling.service;
 
+import dev.aisling.dto.ClothingItemDTO;
 import dev.aisling.dto.UserDTO;
 import dev.aisling.model.User;
 import dev.aisling.dto.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.security.Principal;
 import java.util.List;
 import org.bson.types.ObjectId;
 import java.util.Optional;
@@ -17,6 +20,8 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+
 
     //GET method to read all users
     public List<UserDTO> allUsers() {
@@ -61,6 +66,8 @@ public class UserService {
         userDto.setEmail(user.getEmail());
         userDto.setAddress(user.getAddress());
         userDto.setPhone(user.getPhone());
+        userDto.setClothingItems(null);
+        userDto.setOrders(null);
         userDto.setRole("ROLE_USER");
 
         return userRepository.save(userDto);
@@ -78,5 +85,10 @@ public class UserService {
 
         return userDto;
 
+    }
+
+
+    public Optional<UserDTO> getUserDetails(ObjectId userId) {
+        return userRepository.findById(userId);
     }
 }

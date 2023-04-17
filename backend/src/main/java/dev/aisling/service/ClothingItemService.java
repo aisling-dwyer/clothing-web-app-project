@@ -2,10 +2,13 @@ package dev.aisling.service;
 
 import dev.aisling.dto.ClothingItemDTO;
 import dev.aisling.dto.ClothingItemRepository;
+import dev.aisling.dto.UserDTO;
+import dev.aisling.dto.UserRepository;
 import dev.aisling.model.ClothingItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +19,7 @@ import org.bson.types.ObjectId;
 public class ClothingItemService {
     @Autowired
     private ClothingItemRepository clothingItemRepository;
+    private UserRepository userRepository;
 
     //GET method all clothing items
     public List<ClothingItemDTO> allClothingItems() {
@@ -27,6 +31,30 @@ public class ClothingItemService {
         return clothingItemRepository.getItemById(id);
     }
 
+    //GET method list of clothing item objects by user id
+    public List<ClothingItemDTO> getUserClothingItemsList(ObjectId userId) {
+
+       List<ClothingItemDTO> clothingItems = clothingItemRepository.findByUserId(userId);
+       List<ClothingItemDTO> clothingItemDTOS = new ArrayList<>();
+
+       for(ClothingItemDTO clothingItem : clothingItems) {
+           ClothingItemDTO clothingItemDTO = new ClothingItemDTO();
+           clothingItemDTO.setId(clothingItem.getId());
+           clothingItemDTO.setType(clothingItem.getType());
+           clothingItemDTO.setSize(clothingItem.getSize());
+           clothingItemDTO.setColour(clothingItem.getColour());
+           clothingItemDTO.setDateAdded(clothingItem.getDateAdded());
+           clothingItemDTO.setUrl(clothingItem.getUrl());
+           clothingItemDTO.setAvailable(clothingItem.getAvailable());
+           clothingItemDTO.setUserId(clothingItem.getUserId());
+
+           clothingItemDTOS.add(clothingItemDTO);
+
+       }
+
+       return clothingItemDTOS;
+    }
+
     public ClothingItemDTO addClothingItem(ClothingItem clothingItem) {
         ClothingItemDTO clothingItemDto = new ClothingItemDTO();
 
@@ -36,6 +64,7 @@ public class ClothingItemService {
         clothingItemDto.setDateAdded(new Date());
         clothingItemDto.setAvailable(true);
         clothingItemDto.setUrl(clothingItem.getUrl());
+        clothingItemDto.setUserId(clothingItem.getUserId());
 
         return clothingItemRepository.save(clothingItemDto);
 

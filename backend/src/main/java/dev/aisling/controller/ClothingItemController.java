@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 import org.bson.types.ObjectId;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/clothingitems")
@@ -31,6 +30,15 @@ public class ClothingItemController {
     public ResponseEntity<ClothingItemDTO> singleClothingItem(@PathVariable ObjectId id) {
         return new ResponseEntity<ClothingItemDTO>(clothingItemService.getItem(id), HttpStatus.OK);
     }
+
+    //GET method get user clothing items by user Id
+    @GetMapping(value = "/{userIdString}/clothing-items")
+//    @PreAuthorize("hasAuthority('ROLE_USER')")
+    public ResponseEntity<List<ClothingItemDTO>> getUserClothingItems(@PathVariable String userIdString) {
+        ObjectId userId = new ObjectId(userIdString);
+        return new ResponseEntity<List<ClothingItemDTO>>(clothingItemService.getUserClothingItemsList(userId), HttpStatus.OK);
+    }
+
 
     //DELETE METHOD delete by id
     @DeleteMapping(value = "/deleteitembyid/{id}")

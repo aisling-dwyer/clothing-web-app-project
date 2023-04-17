@@ -17,5 +17,5 @@ public class Order {
     private int numItemsOrdered;
     private double amount;
     private ObjectId[] clothingItemsBorrowed;
-
+    private ObjectId userId;
 }

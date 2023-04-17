@@ -20,5 +20,6 @@ public class ClothingItem {
     private String colour;
     private Boolean available;
     private String url;
+    private ObjectId userId;
 
 }

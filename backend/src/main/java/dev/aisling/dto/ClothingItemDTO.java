@@ -27,5 +27,6 @@ public class ClothingItemDTO {
     private Date dateAdded;
     private Boolean available;
     private String url;
+    private ObjectId userId;
 
 }
