@@ -1,0 +1,28 @@
+.row {
+    display: flex;
+    justify-content: space-between;
+    /* grid-template-columns: repeat(3, 1fr); */
+    
+}
+
+.col-2 {
+    grid-column: span 2;
+}
+
+.text-center {
+    text-align: center;
+}
+
+button {
+    margin: 10px !important;
+    
+}
+
+.col-2.remove {
+    font-size: small !important;
+}
+
+.col-2 {
+    width: 200px !important;
+}
+

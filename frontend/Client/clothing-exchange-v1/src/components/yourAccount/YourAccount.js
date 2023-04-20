@@ -5,7 +5,7 @@ import OrderDetailsDisplay from '../orderDetailsDisplay/OrderDetailsDisplay.js';
 import UserDetailsDisplay from '../userDetailsDisplay/UserDetailsDisplay.js';
 
 
-const YourAccount = ({yourClothingItems, userDetails}) => {
+const YourAccount = ({yourClothingItems, userDetails, orderDetails, editItem, removeItem, addClothingItem}) => {
 
     return (
         <div className="account-style">
@@ -14,11 +14,12 @@ const YourAccount = ({yourClothingItems, userDetails}) => {
                 <UserDetailsDisplay userDetails = { userDetails }/>
 
                 <h2>Your Uploaded Clothing Items</h2>
-                <ClothingItemDetailsDisplay yourClothingItems = { yourClothingItems }/> 
+                <ClothingItemDetailsDisplay yourClothingItems = { yourClothingItems} /> 
     
-                <NewClothingItem />
+                <NewClothingItem addClothingItem={ addClothingItem }/>
             
-            {/* <OrderDetailsDisplay order = { order }/> */}
+                <h2>Your Order History</h2>
+                <OrderDetailsDisplay orderDetails = { orderDetails }/>
         </div>
         
     );

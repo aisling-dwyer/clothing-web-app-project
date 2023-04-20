@@ -1,15 +1,20 @@
 import React from "react";
 
-const OrderDetailsDisplay = ({ order }) => {
+const OrderDetailsDisplay = ({ orderDetails }) => {
     return (
         <div>
-            <h2>Your Order History</h2>
-            <p>Date: {order.orderDate}</p>
-            <p>Number of Items Ordered: {order.numItemsOrdered}</p>
-            <p>Items Borrowed by ID: {order.clothingItemsBorrowed}</p>
-            <p>Total cost: {order.amount}</p>
-        </div>
-    );
+            {orderDetails && orderDetails.map((order, index) => {
+            return (
+                <div key={index}>
+                    <p>Date: {order.orderDate}</p>
+                    <p>Number of Items Ordered: {order.numItemsOrdered}</p>
+                    {/* <p>Items Borrowed by ID: {order.clothingItemsBorrowed}</p> */}
+                    <p>Total cost: €{order.amount}</p>
+                </div>
+            )
+        })}
+    </div>
+    )
 };
 
 export default OrderDetailsDisplay;
