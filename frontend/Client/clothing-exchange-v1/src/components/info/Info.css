@@ -1,21 +1,106 @@
-.Info-Style {
-    font-size: 24px;
-    top: 50%;
-    left: 50%;
-    text-align: center;
-    margin-left: 30px;
-    margin-right: 30px;
-    padding: 0;
-
-}
-
 .Brand-Style {
     padding: 20px;
-    margin: 20px;
-    margin-top: 76px;
+    margin-top: 70px;
     text-align: center;
-    font-family: "Bradley Hand", cursive;
-    color: #FF69B4;
-    font-weight: bold;
-    font-size:60px;
+    background-image:  linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+      ), 
+      url(https://clothing-item-bucket.s3.eu-west-1.amazonaws.com/AdobeStock_141728316.jpeg);
+    opacity: 0.9;
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+    border-bottom: 5px solid #F01D7F;
+    align-items: center;
+    z-index: -1;
+
 }
+
+.Brand-Style h1 {
+    backdrop-filter: blur(2px);
+    font-family: "American Typewriter";
+    color: #F01D7F;
+    font-weight: bolder;
+    font-size: 60px !important;
+    top: 50%;
+    right: 0;
+    z-index: 0;
+    opacity: 1;
+}
+
+
+
+div {
+    align-items: center;
+}
+
+
+.Info-Style {
+    
+    /* top: 50%;
+    left: 50%; */
+  
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    margin-bottom: 50px;
+    color: #F01D7F;
+    backdrop-filter: blur(1.75px);
+    width: 100%;
+    position: relative;
+    font-size: 50px;
+
+    
+}
+
+.strong {
+    font-weight: bolder;
+    text-shadow: -1px 2px lightgrey;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    font-size: 40px;
+    right: 0;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.normal {
+    letter-spacing: 1px;
+    line-height: 1.5;
+    font-size: 25px;
+    text-align: center;
+}
+
+h5 {
+   text-align: center;
+   font-size: 20px;
+}
+
+.info li {
+    /* text-align: center; */
+    /* align-items: center; */
+    letter-spacing: 1px;
+    line-height: 1.8;
+    list-style-type: none;
+    margin-left: 80px;
+  
+}
+
+.info-title {
+    align-items: center;
+    /* text-align: center; */
+}
+
+
+
+
+
+
+
+
+
+
+
+

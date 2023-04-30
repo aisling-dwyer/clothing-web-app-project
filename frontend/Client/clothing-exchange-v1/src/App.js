@@ -10,7 +10,12 @@ import YourNeighbourhoodWardrobe from './components/yourNeighbourhoodWardrobe/Yo
 import Basket from './components/basket/Basket';
 import NewOrder from './components/newOrder/NewOrder';
 import CompletedOrder from './components/completedOrder/CompletedOrder';
+import Login from './components/Login';
+import Logout from './components/logout/Logout';
+import Register from './components/Register';
 import { AuthContext } from './context/AuthContext';
+import { prefix } from '@fortawesome/free-solid-svg-icons';
+import resolveProps from '@mui/utils/resolveProps';
 
 
 const API_REST_URL = "http://localhost:8090"
@@ -19,13 +24,13 @@ const API_REST_URL = "http://localhost:8090"
 function App() {
 
   const[token, setToken] = useState(null);
+  const[isLoggedIn, setIsLoggedIn] = useState(false);
 
   //get all clothing items to display on carousel
   const[clothingitems, setClothingItems] = useState();
   const getClothingItems = async () => {
     try {
-      const response = await api.get(API_REST_URL + "/clothingitems/allitems");
-      console.log(response.data);
+      const response = await api.get(API_REST_URL + "/clothingitems/all");
       setClothingItems(response.data);
     } catch(err) {
         console.log(err);
@@ -33,18 +38,26 @@ function App() {
   }
 
    //post new clothing item to user account
-
-    
     const [newClothingItem, setNewClothingItem] = useState([]);
-    const addClothingItem = async(type, size, colour, available, url) => {
+    const addClothingItem = async(type, size, colour, available, image) => {
       try {
-        const userIdString = "6436b250a869e1350b08d4cd";
-        const response = await api.post(`${API_REST_URL}/clothingitems/${userIdString}/addclothingitem`, {
+        const userIdStr = localStorage.getItem('userId');
+        const response = await api.post(`${API_REST_URL}/clothingitems/${userIdStr}/addclothingitem`, {
            type: type,
            size: size,
            colour: colour,
            available: available,
-           url: url,
+           image: image
+        },
+        {
+           headers: {
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true"
+           }
         });
         setNewClothingItem((newClothingItem) => [response.data, ...newClothingItem]);
       } catch(err) {
@@ -57,10 +70,11 @@ function App() {
   const[yourClothingItems, setYourClothingItems] = useState([]);
   const getYourClothingItems = async () => {
     try {
-      const userIdString = "6436b250a869e1350b08d4cd";
-      const response = await api.get(`${API_REST_URL}/clothingitems/${userIdString}/clothing-items`, {
+    
+      const userIdStr = localStorage.getItem('userId');
+      const response = await api.get(`${API_REST_URL}/clothingitems/${userIdStr}/clothing-items`, {
         headers: {
-          // headers: { Authorization : `Basic ${token}` }
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`,
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "http://localhost:3000",
           "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
@@ -77,27 +91,27 @@ function App() {
 
     }
   }
-  const editItem = async () => {
-    try {
-      const itemIdString = "6405d2fe93c4e1afcba93606";
-      const response = await api.patch(`${API_REST_URL}/clothingitems/edit-item/${itemIdString}`, {
-        headers: {
-          // headers: { Authorization : `Basic ${token}` }
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Allow-Credentials": "true"
-        }
-      });
-      // console.log(token);
-      console.log(response.data);
+  // const editItem = async () => {
+  //   try {
+  //     const itemIdString = "6405d2fe93c4e1afcba93606";
+  //     const response = await api.patch(`${API_REST_URL}/clothingitems/edit-item/${itemIdString}`, {
+  //       headers: {
+  //         "Authorization" : `Bearer ${localStorage.getItem('token')}`,
+  //         "Content-Type": "application/json",
+  //         "Access-Control-Allow-Origin": "http://localhost:3000",
+  //         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
+  //         "Access-Control-Allow-Headers": "*",
+  //         "Access-Control-Allow-Credentials": "true"
+  //       }
+  //     });
+  //     // console.log(token);
+  //     console.log(response.data);
 
-    } catch(err) {
-    console.log(err);
+  //   } catch(err) {
+  //   console.log(err);
 
-    }
-  }
+  //   }
+  // }
   
 
   //get user details associated with a particular users account
@@ -105,16 +119,18 @@ function App() {
   const [userDetails, setUserDetails] = useState();
   const getUserDetails = async () => {
     try {
-      const userIdString = "6436b250a869e1350b08d4cd";
-      const response = await api.get(`${API_REST_URL}/users/${userIdString}/user-details`, {
-        // headers: { Authorization : `Basic ${token}` }
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Credentials": "true"
+    
+      const userIdStr = localStorage.getItem('userId');
+      const response = await api.get(`${API_REST_URL}/users/${userIdStr}/user-details`, {
+        headers: {
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true"
+        }
       });
-      // console.log(token);
       console.log(response.data);
       setUserDetails(response.data);
     } catch(err) {
@@ -127,14 +143,16 @@ function App() {
   const [orderDetails, setOrderDetails] = useState();
   const getOrderDetails = async () => {
     try {
-      const userIdString = "6436b250a869e1350b08d4cd";
-      const response = await api.get(`${API_REST_URL}/orders/${userIdString}/order-details`, {
-        // headers: { Authorization : `Basic ${token}` }
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Credentials": "true"
+      const userIdStr = localStorage.getItem('userId');
+      const response = await api.get(`${API_REST_URL}/orders/${userIdStr}/order-details`, {
+        headers: {
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true"
+        }
       });
       // console.log(token);
       console.log(response.data);
@@ -145,12 +163,15 @@ function App() {
   }
 
 
-
   useEffect(() => {
    
     const storedToken = localStorage.getItem('token');
+   
     if(storedToken) {
       setToken(storedToken);
+      setIsLoggedIn(true);
+      
+      
     }
     getUserDetails();
     getYourClothingItems();
@@ -172,13 +193,16 @@ function App() {
   return (
     <div className="App">
       <AuthContext.Provider value = {{ token, updateToken, clearToken }}>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} clearToken={clearToken} />
 
         <Routes>
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Home clothingitems = {clothingitems} />} ></Route>
               <Route path="/yourAccount/YourAccount" element={<YourAccount yourClothingItems = {yourClothingItems} userDetails = {userDetails} orderDetails = {orderDetails} addClothingItem={addClothingItem}/>} ></Route>
               <Route path="/yourNeighbourhoodWardrobe/yourNeighbourhoodWardrobe" element={<YourNeighbourhoodWardrobe clothingItems = {clothingitems} />} ></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/logout" element={<Logout />}></Route>
+              <Route path="/register" element={<Register />}></Route>
               <Route path="/basket/Basket" element={<Basket />}></Route>
               <Route path="/newOrder" element={<NewOrder userDetails={userDetails} />}></Route>
               <Route path="/completedOrder" element={<CompletedOrder userDetails={userDetails} />}></Route>

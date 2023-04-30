@@ -23,7 +23,16 @@ public class OrderDTO {
     private Date orderDate;
     private int numItemsOrdered;
     private double amount;
-    private ObjectId[] clothingItemsBorrowed;
+    private String[] clothingItemsBorrowed;
     private ObjectId userId;
 
+
+//    public String[] getOrderItemsBorrowed(String[] clothingItemsBorrowed) {
+//        String[] borrowedItems = new String[clothingItemsBorrowed.length];
+//        for(int i = 0; i < clothingItemsBorrowed.length; i++) {
+//            clothingItemsBorrowed[i].toString();
+//        }
+//        return borrowedItems;
+//
+//    }
 }

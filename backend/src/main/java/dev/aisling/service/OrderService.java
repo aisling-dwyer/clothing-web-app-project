@@ -26,34 +26,36 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public OrderDTO createOrder(Order order) {
+    public OrderDTO createOrder(ObjectId userId, Order order) {
         OrderDTO orderDto = new OrderDTO();
         orderDto.setOrderDate(new Date());
         orderDto.setNumItemsOrdered(order.getNumItemsOrdered());
         orderDto.setAmount(10*(order.getNumItemsOrdered()));
         orderDto.setClothingItemsBorrowed(order.getClothingItemsBorrowed());
-        orderDto.setUserId(order.getUserId());
+        orderDto.setUserId(userId);
         return orderRepository.save(orderDto);
     }
 
     //GET method list of order objects by user id
-    public List<OrderDTO> getUserOrdersList(ObjectId userId) {
+    public List<Order> getUserOrdersList(ObjectId userId) {
 
         List<OrderDTO> orders = orderRepository.findByUserId(userId);
-        List<OrderDTO> orderDTOS = new ArrayList<>();
+        List<Order> ordersList = new ArrayList<>();
 
         for(OrderDTO order : orders) {
-            OrderDTO orderDTO = new OrderDTO();
-            orderDTO.setId(order.getId());
-            orderDTO.setOrderDate(order.getOrderDate());
-            orderDTO.setNumItemsOrdered(order.getNumItemsOrdered());
-            orderDTO.setAmount(order.getAmount());
-            orderDTO.setClothingItemsBorrowed(order.getClothingItemsBorrowed());
-            orderDTO.setUserId(order.getUserId());
-            orderDTOS.add(orderDTO);
+            Order orderModel = new Order();
+            orderModel.setId(order.getId().toString());
+            orderModel.setOrderDate(order.getOrderDate().toString());
+            orderModel.setNumItemsOrdered(order.getNumItemsOrdered());
+            orderModel.setAmount(order.getNumItemsOrdered()*10);
+            orderModel.setClothingItemsBorrowed(order.getClothingItemsBorrowed());
+            orderModel.setUserId(order.getUserId().toString());
+            ordersList.add(orderModel);
         }
 
-        return orderDTOS;
+
+
+        return ordersList;
     }
 
 

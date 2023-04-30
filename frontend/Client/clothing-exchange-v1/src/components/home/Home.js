@@ -18,7 +18,7 @@ const Home = ({clothingitems}) => {
             <CarouselFeature clothingitems = { clothingitems }/>
             
             {
-                currentForm === "login" ? <Login onFormSwitch={toggleForm}/> : <Register onFormSwitch={toggleForm}/>
+                currentForm === "login" ? <Login onFormSwitch={toggleForm} id="login"/> : <Register onFormSwitch={toggleForm} />
             }
         </div>
     )

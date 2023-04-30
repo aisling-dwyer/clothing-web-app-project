@@ -28,7 +28,7 @@ const CarouselFeature = ({ clothingitems }) => {
             <p><br />Here are some of the clothing items available to borrow from our community</p>
               <div className='clothingitem-card'>
                 <div className='clothingitem-img'>
-                  <img src={clothingitem.url} alt='clothing item'></img>
+                  <img src={clothingitem.image} alt='clothing item'></img>
                 </div>
               </div>
             </div>
@@ -36,14 +36,6 @@ const CarouselFeature = ({ clothingitems }) => {
         );
       })}
     </Carousel>
-    {/* <div className='carousel-navigation'>
-      <button onClick={handlePreviousImage} className='carousel-arrow'>
-        &#60;
-      </button>
-      <button onClick={handleNextImage} className='carousel-arrow'>
-        &#62;
-      </button>
-    </div> */}
   </div>
 );
 };

@@ -1,15 +1,30 @@
 import React from "react";
+import "./OrderDetailsDisplay.css"
+import api from "../../api/axiosConfig"
+
+const API_REST_URL = "http://localhost:8090";
+
 
 const OrderDetailsDisplay = ({ orderDetails }) => {
+   
+
     return (
-        <div>
-            {orderDetails && orderDetails.map((order, index) => {
+        <div className = "orders">
+          {orderDetails && orderDetails.map((order, index) => {
+                 const timestamp = order.orderDate;
+                 const parts = timestamp.split(" ");
+                 parts.splice(0,1);
+                 parts.splice(2,2);
+                 const formattedDate = parts.join(" ");
+                
             return (
-                <div key={index}>
-                    <p>Date: {order.orderDate}</p>
-                    <p>Number of Items Ordered: {order.numItemsOrdered}</p>
-                    {/* <p>Items Borrowed by ID: {order.clothingItemsBorrowed}</p> */}
-                    <p>Total cost: €{order.amount}</p>
+                <div key={index} className="order-divider">
+                    <ul className = "order-list">
+                        <li><strong>Date:</strong> {formattedDate}</li>
+                        <li><strong>Number of Items Ordered:</strong> {order.numItemsOrdered}</li>
+                        <li><strong>Item(s) Borrowed by ID: </strong>{order.clothingItemsBorrowed === null? "" : order.clothingItemsBorrowed.toString()}</li>
+                        <li><strong>Total cost: </strong>€{order.amount}</li>
+                    </ul>
                 </div>
             )
         })}

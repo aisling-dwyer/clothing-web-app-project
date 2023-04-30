@@ -26,7 +26,7 @@ public class ClothingItemDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateAdded;
     private Boolean available;
-    private String url;
+    private String image;
     private ObjectId userId;
 
 }

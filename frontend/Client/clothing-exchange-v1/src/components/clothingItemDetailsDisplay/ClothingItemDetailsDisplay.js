@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import api from '../../api/axiosConfig';
+import "./ClothingItemDetailsDisplay.css";
 const API_REST_URL = "http://localhost:8090"
 
 const ClothingItemDetailsDisplay = ({ yourClothingItems }) => {
-    
-    
+
+    let itemIdStr = "";
+  
     const removeItem = async (clothingItem) => {
         try {
-            const userIdString = "6436b250a869e1350b08d4cd";
-          const itemIdString = "643e3ced02b3fd291a383cb3";
-          const response = await api.delete(`${API_REST_URL}/clothingitems/user/${userIdString}/delete-item/${itemIdString}`, {
+          const token = localStorage.getItem('token');
+          const userIdStr = localStorage.getItem('userId');
+          itemIdStr = clothingItem.id;
+          console.log(itemIdStr)
+          const response = await api.delete(`${API_REST_URL}/clothingitems/user/${userIdStr}/delete-item/${itemIdStr}`, 
+          {
             headers: {
-              // headers: { Authorization : `Basic ${token}` }
+              Authorization : `Bearer ${token}`,
               "Content-Type": "application/json",
               "Access-Control-Allow-Origin": "http://localhost:3000",
               "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
@@ -19,10 +24,9 @@ const ClothingItemDetailsDisplay = ({ yourClothingItems }) => {
               "Access-Control-Allow-Credentials": "true"
             }
             
-          })
-          // console.log(token);
-          console.log(response.data);
-     
+          });
+          window.location.reload();
+          alert("Your item has been successfully removed.")
     
         } catch(err) {
             console.log(err);
@@ -33,20 +37,33 @@ const ClothingItemDetailsDisplay = ({ yourClothingItems }) => {
         <div>
             
             {yourClothingItems && yourClothingItems.map((clothingItem, index) => {
-                const itemIdString2 = JSON.stringify(clothingItem.id.timestamp);
-
+                const timestamp = clothingItem.dateAdded;
+                const parts = timestamp.split(" ");
+                parts.splice(0,1);
+                parts.splice(2,2);
+                const formattedDate = parts.join(" ")
+                   
                 return (
-                    <div key={index}>
-                        <p>Clothing Item {index+1}:</p>
-                        <p>Item Id: {itemIdString2}</p>
-                        <p>Type: {clothingItem.type}</p>
-                        <p>Size: {clothingItem.size}</p>
-                        <p>Colour: {clothingItem.colour}</p>
-                        <p>Available to lend: {clothingItem.available}</p>
-                        <img src={clothingItem.url} alt={clothingItem.type}></img>
-                        {/* <button onClick = {() => editItem(clothingItem)}>Edit Item Details</button> */}
-                        <button onClick = {() => removeItem(clothingItem)}>Remove Item</button>
-                    </div>
+                  
+                    <div key={index} className = "clothing-item">
+                        <div className = "item-image2">
+                          <img src={clothingItem.image} alt={clothingItem.type}></img>
+                        </div>
+                        <div className = "item-adjuncts2">
+                          
+                          
+                          <p className = "item-title">Clothing Item {index+1}:</p>
+                          <p><strong>Item Id: </strong>{clothingItem.id}</p>
+                          <p><strong>Type: </strong>{clothingItem.type}</p>
+                          <p><strong>Size: </strong>{clothingItem.size}</p>
+                          <p><strong>Colour: </strong>{clothingItem.colour}</p>
+                          <p><strong>Date Uploaded: </strong>{formattedDate}</p>
+                          {/* <button onClick = {() => editItem(clothingItem)}>Edit Item Details</button> */}
+                          <button onClick = {() => removeItem(clothingItem)}>Remove Item</button>
+                        </div>
+                      
+                   
+                  </div>
                 );
             })}            
         </div>

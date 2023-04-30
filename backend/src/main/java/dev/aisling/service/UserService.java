@@ -1,14 +1,12 @@
 package dev.aisling.service;
 
-import dev.aisling.dto.ClothingItemDTO;
 import dev.aisling.dto.UserDTO;
-import dev.aisling.model.User;
+import dev.aisling.dto.User;
 import dev.aisling.dto.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.List;
 import org.bson.types.ObjectId;
 import java.util.Optional;
@@ -23,6 +21,7 @@ public class UserService {
 
 
 
+
     //GET method to read all users
     public List<UserDTO> allUsers() {
         return userRepository.findAll();
@@ -31,7 +30,12 @@ public class UserService {
     //GET method to read single user by using username
     public Optional<UserDTO> singleUser(String userName) {
 
-        return userRepository.findUserByUserName(userName);
+        Optional<UserDTO> userDto = userRepository.findUserByUserName(userName);
+        if(userDto.isPresent()){
+            return userDto;
+        } else {
+            return Optional.empty();
+        }
     }
 
     //DELETE method to delete user by username
@@ -47,12 +51,6 @@ public class UserService {
         return "User with id "+id+ " has been successfully deleted.";
     }
 
-//    //DELETE method to delete user by username
-//    public String removeUserByName(String userName) {
-//        Optional<UserDTO> userToBeDeleted = singleUser(userName);
-//        userRepository.delete(userToBeDeleted);
-//        return "User with id "+userToBeDeleted+ " has been successfully deleted.";
-//    }
 
     //POST method to add user
     public UserDTO createUser (User user) {
@@ -73,22 +71,44 @@ public class UserService {
         return userRepository.save(userDto);
     }
 
-    //UPDATE method - patch
-    public Optional<UserDTO> updateUserAddress(String userName, User user) {
-        Optional<UserDTO> userDto = singleUser(userName);
-        if(userDto.isPresent()) {
-            UserDTO userFound = userDto.get();
-            userFound.setAddress(user.getAddress());
-            userRepository.save(userFound);
-
-        }
-
-        return userDto;
-
-    }
+//    //UPDATE method - patch
+//    public Optional<UserDTO> updateUserAddress(String userName, String password, User user) {
+//        Optional<UserDTO> userDto = singleUser(userName);
+//        if(userDto.isPresent()) {
+//            UserDTO userFound = userDto.get();
+//            userFound.setAddress(user.getAddress());
+//            userRepository.save(userFound);
+//        }
+//        return userDto;
+//    }
 
 
     public Optional<UserDTO> getUserDetails(ObjectId userId) {
-        return userRepository.findById(userId);
+        Optional<UserDTO> user = userRepository.findById(userId);
+        UserDTO userDTO = user.get();
+        User user1 = new User();
+        user1.setUserName(userDTO.getUserName());
+        user1.setId(userDTO.getId().toString());
+        return user;
+    }
+
+    public User getUserDetailsResponse(ObjectId userId) {
+        Optional<UserDTO> user = userRepository.findById(userId);
+        UserDTO userDTO = user.get();
+
+        User user1 = new User();
+        user1.setId(userDTO.getId().toString());
+        user1.setUserName(userDTO.getUserName());
+        user1.setPassword(userDTO.getPassword());
+        user1.setLastName(userDTO.getLastName());
+        user1.setFirstName(userDTO.getFirstName());
+        user1.setEmail(userDTO.getEmail());
+        user1.setAddress(userDTO.getAddress());
+        user1.setPhone(userDTO.getPhone());
+        return user1;
+    }
+
+    public void updateUserDetails(UserDTO userDTO) {
+        userRepository.save(userDTO);
     }
 }

@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand@display=swap');
+
 
 * {
   box-sizing: border-box;
-  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+  font-family: 'American Typewriter', Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -29,6 +29,7 @@ body {
 
 }
 
+
 .auth-form-container {
   padding: 10px;
   /* border: 1px solid pink; */
@@ -41,7 +42,8 @@ label {
 }
 
 ::placeholder {
-  color: lightgray;
+  color: #F01D7F;
+  
 }
 
 input {
@@ -54,7 +56,7 @@ input {
 
 input:focus{
   outline: none !important;
-  border: 3px solid #FF69B4;
+  border: 3px solid #F01D7F;
 }
 
 h3 {
@@ -63,13 +65,28 @@ h3 {
   font-weight: bold;
 }
 
+.component-titles {
+  color: #F01D7F;
+  font-weight: bold;
+  padding-top: 30px;
+  border-top: 5px solid #F01D7F;
+  margin: 10px;
+}
+
+.login-title {
+  color: #F01D7F;
+  font-weight: bold;
+  margin-top: 100px;
+
+}
+
 .css-1m9128y {
   /* padding-bottom: 10px; */
  display: none;
 }
 
 .css-1m9128y div {
-  color: #FF69B4;
+  color: #F01D7F;
 }
 
 
@@ -81,21 +98,24 @@ h1 {
 
 
 button {
-  border: #FF69B4;
-  background-color: #FF69B4;
+  border: #F01D7F;
+  background-color: #F01D7F;
   color: pink;
   padding: 15px;
   cursor: pointer;
+  border-radius: 5px !important;
   
 }
 
 .submit-btn {
-  margin-top: 20px;
+  margin-top: 30px !important;
   border: 10px;
   font-size: large;
   font-weight: bold;
   width: 200px;
 }
+
+
 
 .link-btn {
   background: none;
@@ -104,7 +124,7 @@ button {
 }
 
 .reroute {
-  color: #FF69B4;
+  color: #F01D7F;
   font-weight: bold;
   font-size: 30px;
   text-align: center;
@@ -121,3 +141,19 @@ button {
 }
 
 
+span {
+  color: red;
+}
+
+
+.page-link {
+  text-align: center;
+}
+
+input#userName {
+  width: 300px;
+}
+
+input#password, input#firstName, input#lastName, input#email, input#phone, input#address {
+  width: 300px;
+}

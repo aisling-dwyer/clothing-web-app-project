@@ -26,3 +26,20 @@ button {
     width: 200px !important;
 }
 
+.empty-basket {
+    text-align: center;
+}
+
+.basket-container {
+    width: 80%;
+    margin-left: 75px;
+}
+
+.reroute3 {
+    /* color: #F01D7F;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center !important; */
+    margin-left: 30%;
+}
+
