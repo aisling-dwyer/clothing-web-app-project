@@ -1,4 +1,4 @@
-package dev.aisling.model;
+package dev.aisling.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-
+    private String id;
     private String userName;
     private String password;
     private String lastName;

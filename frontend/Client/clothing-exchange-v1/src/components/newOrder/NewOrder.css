@@ -1,0 +1,42 @@
+.order-title {
+    color: #F01D7F;
+    font-weight: bold;
+    padding-top: 60px;
+    border-bottom: 5px solid #F01D7F;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    width: 100% !important;
+    text-align: center;
+    background-color: pink;
+
+}
+
+div.order-placed {
+    width: 100%;
+}
+
+main {
+    width: 100%;
+}
+
+.header {
+    text-decoration: underline;
+}
+
+
+.complete-order button{
+    align-items: center !important;
+    margin-left: 50px !important;
+}
+
+.button-box div{
+    width: 100%;
+    align-items: center !important;
+    
+}
+
+.order-contents {
+    margin-left: 150px;
+    padding-left: 150px;
+}

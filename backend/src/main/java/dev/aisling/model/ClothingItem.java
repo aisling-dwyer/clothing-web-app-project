@@ -14,12 +14,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClothingItem {
-
+    private String id;
     private String type;
     private String size;
     private String colour;
+    private String dateAdded;
     private Boolean available;
-    private String url;
-    private ObjectId userId;
+    private String image;
+    private String userId;
 
 }

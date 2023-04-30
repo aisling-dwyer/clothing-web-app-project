@@ -13,9 +13,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order {
-
+    private String id;
+    private String orderDate;
     private int numItemsOrdered;
     private double amount;
-    private ObjectId[] clothingItemsBorrowed;
-    private ObjectId userId;
+    private String[] clothingItemsBorrowed;
+    private String userId;
 }

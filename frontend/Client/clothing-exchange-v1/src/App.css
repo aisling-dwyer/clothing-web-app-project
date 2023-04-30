@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand@display=swap');
+
 
 * {
   box-sizing: border-box;
-  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+  font-family: 'American Typewriter', Arial, Helvetica, sans-serif;
 }
 
 body {
-  padding: 0;
+
   margin: 0;
 }
 .App {
@@ -15,5 +15,145 @@ body {
   min-height: 100vh;
   background-color: black;
   color: white;
-  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(79deg, #fcfced, #fdedfc 48%, #ebf6ff);
+  color: darkgray;
+}
+
+.auth-form-container, .login-form, .register-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+}
+
+
+.auth-form-container {
+  padding: 10px;
+  /* border: 1px solid pink; */
+}
+
+label {
+  width: 25%;
+  text-align: left;
+  padding: 1rem 0;
+}
+
+::placeholder {
+  color: #F01D7F;
+  
+}
+
+input {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
+input:focus{
+  outline: none !important;
+  border: 3px solid #F01D7F;
+}
+
+h3 {
+  padding-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.component-titles {
+  color: #F01D7F;
+  font-weight: bold;
+  padding-top: 30px;
+  border-top: 5px solid #F01D7F;
+  margin: 10px;
+}
+
+.login-title {
+  color: #F01D7F;
+  font-weight: bold;
+  margin-top: 100px;
+
+}
+
+.css-1m9128y {
+  /* padding-bottom: 10px; */
+ display: none;
+}
+
+.css-1m9128y div {
+  color: #F01D7F;
+}
+
+
+h1 {
+  margin-top: 100px !important;
+}
+
+
+
+
+button {
+  border: #F01D7F;
+  background-color: #F01D7F;
+  color: pink;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 5px !important;
+  
+}
+
+.submit-btn {
+  margin-top: 30px !important;
+  border: 10px;
+  font-size: large;
+  font-weight: bold;
+  width: 200px;
+}
+
+
+
+.link-btn {
+  background: none;
+  text-decoration: underline;
+  color: darkgray;
+}
+
+.reroute {
+  color: #F01D7F;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+
+}
+
+.auth-form-container h1 {
+  margin-top: 30px;
+  margin-bottom: 20px !important;
+}
+
+.auth-form-container p {
+  margin-bottom: 50px;
+}
+
+
+span {
+  color: red;
+}
+
+
+.page-link {
+  text-align: center;
+}
+
+input#userName {
+  width: 300px;
+}
+
+input#password, input#firstName, input#lastName, input#email, input#phone, input#address {
+  width: 300px;
 }

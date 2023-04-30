@@ -1,0 +1,56 @@
+h2.page-titles {
+    font-family: "American Typewriter";
+    color: #F01D7F;
+    font-weight: bolder;
+    font-size: 30px !important;
+    top: 50%;
+    right: 0;
+    z-index: 0;
+    opacity: 1;
+    /* margin-bottom: 20px !important; */
+    margin-bottom: 0px !important;
+    margin-top: 120px !important;
+    background-color: pink;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+    border-top: 5px solid #F01D7F;
+    padding-top: 30px;
+
+}
+
+.account-style {
+    width: 100%;
+}
+
+.component-titles-your-items {
+    color: #F01D7F;
+    font-weight: bold;
+    padding-top: 30px;
+    border-top: 5px solid #F01D7F;
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* .new-item-form-container {
+    width: 100%;
+} */
+
+.component-titles-orders {
+    color: #F01D7F;
+    font-weight: bold;
+    padding-top: 30px;
+    border-top: 5px solid #F01D7F;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.reroute4 {
+    /* color: #F01D7F;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center !important; */
+    margin-left: 30%;
+}
