@@ -1,0 +1,23 @@
+div.order-divider {
+    border-bottom: 3px dashed #F01D7F;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.orders {
+    width: 100%;
+    /* text-align: center; */
+   
+}
+
+.order-list {
+    list-style-type: none;
+    /* margin-left: 25%; */
+    line-height: 2;
+   
+}
+
+li {
+    margin-left: 15% !important;
+}

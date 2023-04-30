@@ -1,0 +1,27 @@
+
+  .component-titles-user {
+    margin-top: 0px !important;
+    text-align: center;
+    padding-top: 40px !important;
+    padding-bottom: 20px;
+    border-top: 5px solid #F01D7F;
+    color: #F01D7F;
+    font-weight: bolder;
+  }
+
+  .form-container {
+    width: 100%;;
+    
+
+}
+
+li {
+  list-style-type: none;
+  margin-left: 25%;
+  line-height: 2;
+}
+
+.list {
+  margin-bottom: 40px;
+}
+
